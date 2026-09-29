@@ -53,6 +53,13 @@ function renderNotes() {
 
 function render() { renderTasks(); renderNotes(); }
 
+function setMenuOpen(isOpen) {
+  $("#sidebar").classList.toggle("is-open", isOpen);
+  $("#sidebar-backdrop").classList.toggle("is-visible", isOpen);
+  $("#menu-button").setAttribute("aria-expanded", String(isOpen));
+  $("#menu-button").setAttribute("aria-label", isOpen ? "Close navigation" : "Open navigation");
+}
+
 function setView(view) {
   currentView = view;
   const isNotes = view === "notes";
@@ -66,7 +73,7 @@ function setView(view) {
     completed: ["Progress you can see.", "A record of the work you’ve finished.", "Completed tasks"],
   };
   if (!isNotes) { const [title, subtitle, list] = labels[view]; $("#view-title").textContent = title; $("#view-subtitle").textContent = subtitle; $("#list-title").textContent = list; }
-  $("#sidebar").classList.remove("is-open"); render();
+  setMenuOpen(false); render();
 }
 
 function openTaskModal() { $("#task-form").reset(); $("#task-date").value = new Date().toISOString().slice(0, 10); $("#task-modal").showModal(); setTimeout(() => $("#task-title").focus(), 0); }
@@ -94,7 +101,12 @@ $("#search-input").addEventListener("input", (event) => { search = event.target.
 $$('.nav__item').forEach((button) => button.addEventListener("click", () => setView(button.dataset.view)));
 [$("#open-task-modal"), $("#empty-add")].forEach((button) => button.addEventListener("click", openTaskModal));
 [$("#open-note-modal"), $("#empty-note")].forEach((button) => button.addEventListener("click", openNoteModal));
-$("#menu-button").addEventListener("click", () => $("#sidebar").classList.toggle("is-open"));
+$("#menu-button").addEventListener("click", () => setMenuOpen(!$("#sidebar").classList.contains("is-open")));
+$("#sidebar-backdrop").addEventListener("click", () => setMenuOpen(false));
+window.addEventListener("keydown", (event) => { if (event.key === "Escape" && $("#sidebar").classList.contains("is-open")) setMenuOpen(false); });
+window.addEventListener("resize", () => { if (window.innerWidth > 980) setMenuOpen(false); });
+
+$$('[data-dialog-close]').forEach((button) => button.addEventListener("click", () => button.closest("dialog").close("cancel")));
 
 function setTheme(theme) { document.documentElement.dataset.theme = theme; localStorage.setItem(THEME_KEY, theme); }
 setTheme(localStorage.getItem(THEME_KEY) || (matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light"));
