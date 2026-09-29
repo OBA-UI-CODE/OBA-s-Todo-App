@@ -16,13 +16,13 @@
   <body>
     <div class="app-shell">
       <aside class="sidebar" id="sidebar">
-        <div class="brand"><span class="brand__mark">tl</span><span>todo-lu</span></div>
+        <div class="brand"><span class="brand__mark"><img src="favicon.svg" alt="" /></span><span>todo-lu</span></div>
         <nav class="nav" aria-label="Workspace">
-          <button class="nav__item is-active" data-view="today"><span>◫</span>Today <b id="today-count">0</b></button>
-          <button class="nav__item" data-view="upcoming"><span>⌁</span>Upcoming</button>
-          <button class="nav__item" data-view="all"><span>✓</span>All tasks</button>
-          <button class="nav__item" data-view="notes"><span>▤</span>Notes</button>
-          <button class="nav__item" data-view="completed"><span>◉</span>Completed</button>
+          <button class="nav__item is-active" data-view="today"><svg class="ui-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 2v4M16 2v4M3 10h18M5 4h14a2 2 0 0 1 2 2v13a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2Z"/></svg>Today <b id="today-count">0</b></button>
+          <button class="nav__item" data-view="upcoming"><svg class="ui-icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>Upcoming</button>
+          <button class="nav__item" data-view="all"><svg class="ui-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m4 6 2 2 3-3M4 12l2 2 3-3M4 18l2 2 3-3M12 7h8M12 13h8M12 19h8"/></svg>All tasks</button>
+          <button class="nav__item" data-view="notes"><svg class="ui-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 3h11l3 3v15H5zM15 3v4h4M8 11h8M8 15h8"/></svg>Notes</button>
+          <button class="nav__item" data-view="completed"><svg class="ui-icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="m8.5 12 2.3 2.3 4.8-5"/></svg>Completed</button>
         </nav>
         <div class="sidebar__bottom">
           <div class="mini-progress"><div><span>Weekly progress</span><strong id="side-progress">0%</strong></div><div class="progress"><i id="side-progress-bar"></i></div></div>
@@ -35,14 +35,14 @@
       <main class="workspace">
         <header class="topbar">
           <button class="menu-button" id="menu-button" aria-label="Open navigation" aria-controls="sidebar" aria-expanded="false">☰</button>
-          <label class="search"><span>⌕</span><input id="search-input" type="search" placeholder="Search tasks and notes" /></label>
+          <label class="search"><svg class="ui-icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-4-4"/></svg><span class="sr-only">Search tasks and notes</span><input id="search-input" type="search" placeholder="Search tasks and notes" /></label>
           <button class="focus-pill" id="focus-shortcut"><span></span> Focus mode</button>
         </header>
 
         <section class="content" id="tasks-view">
           <div class="page-heading">
             <div><p class="eyebrow" id="date-label"></p><h1 id="view-title">Make today count.</h1><p id="view-subtitle">A clear list for a focused day.</p></div>
-            <button class="primary-button" id="open-task-modal">＋ Add task</button>
+            <button class="primary-button" id="open-task-modal"><span class="button-icon" aria-hidden="true">＋</span><span class="button-label">Add task</span></button>
           </div>
 
           <section class="overview-grid">
@@ -59,7 +59,7 @@
         </section>
 
         <section class="content is-hidden" id="notes-view">
-          <div class="page-heading"><div><p class="eyebrow">YOUR THINKING SPACE</p><h1>Notes worth keeping.</h1><p>Capture an idea before it slips away.</p></div><button class="primary-button" id="open-note-modal">＋ New note</button></div>
+          <div class="page-heading"><div><p class="eyebrow">YOUR THINKING SPACE</p><h1>Notes worth keeping.</h1><p>Capture an idea before it slips away.</p></div><button class="primary-button" id="open-note-modal"><span class="button-icon" aria-hidden="true">＋</span><span class="button-label">New note</span></button></div>
           <div class="notes-grid" id="notes-grid"></div>
           <div class="empty-state" id="notes-empty"><div>✦</div><h3>A quiet place for ideas</h3><p>Write your first note, thought, or tiny reminder.</p><button class="secondary-button" id="empty-note">Write a note</button></div>
         </section>
