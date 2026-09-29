@@ -112,7 +112,7 @@ function setTheme(theme) { document.documentElement.dataset.theme = theme; local
 setTheme(localStorage.getItem(THEME_KEY) || (matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light"));
 $("#theme-toggle").addEventListener("click", () => setTheme(document.documentElement.dataset.theme === "dark" ? "light" : "dark"));
 
-function updateTimer() { const minutes = Math.floor(timerSeconds / 60).toString().padStart(2, "0"); const seconds = (timerSeconds % 60).toString().padStart(2, "0"); $("#timer").textContent = `${minutes}:${seconds}`; document.title = timerHandle ? `${minutes}:${seconds} — Daymark` : "Daymark — Plan with clarity"; }
+function updateTimer() { const minutes = Math.floor(timerSeconds / 60).toString().padStart(2, "0"); const seconds = (timerSeconds % 60).toString().padStart(2, "0"); $("#timer").textContent = `${minutes}:${seconds}`; document.title = timerHandle ? `${minutes}:${seconds} — todo-lu` : "todo-lu — Plan with clarity"; }
 function stopTimer(completed = false) { clearInterval(timerHandle); timerHandle = null; $("#timer-toggle").textContent = "Start focus"; if (completed) { state.focusMinutes += timerMinutes; save(); render(); toast("Focus session complete"); } }
 function openFocus() { $("#focus-modal").showModal(); updateTimer(); }
 [$("#start-focus"), $("#focus-shortcut")].forEach((button) => button.addEventListener("click", openFocus));

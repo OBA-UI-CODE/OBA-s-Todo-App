@@ -39,7 +39,7 @@ button:focus-visible, input:focus-visible, textarea:focus-visible, select:focus-
 .app-shell { display: grid; grid-template-columns: 248px 1fr; min-height: 100vh; }
 .sidebar { position: sticky; top: 0; height: 100vh; padding: 30px 20px 22px; background: var(--surface); border-right: 1px solid var(--line); display: flex; flex-direction: column; z-index: 20; }
 .brand { display: flex; align-items: center; gap: 11px; padding: 0 10px 30px; font-family: var(--font-display); font-weight: 800; font-size: 19px; letter-spacing: -0.04em; }
-.brand__mark { width: 34px; height: 34px; border-radius: 11px 11px 11px 4px; background: var(--dark); color: var(--accent); display: grid; place-items: center; }
+.brand__mark { width: 34px; height: 34px; border-radius: 11px 11px 11px 4px; background: var(--dark); color: var(--accent); display: grid; place-items: center; font-size: 13px; letter-spacing: -.08em; }
 .nav { display: grid; gap: 5px; }
 .nav__item, .theme-toggle { border: 0; background: transparent; display: flex; align-items: center; gap: 12px; width: 100%; padding: 11px 12px; border-radius: 12px; cursor: pointer; color: var(--muted); text-align: left; }
 .nav__item span { width: 18px; text-align: center; font-size: 17px; }

@@ -1,4 +1,4 @@
-# Daymark — To-Do & Notes Workspace
+# todo-lu — To-Do & Notes Workspace
 
 A calm, responsive productivity app for tasks, notes, and focused work. Built entirely with AI for the assignment requirements.
 
