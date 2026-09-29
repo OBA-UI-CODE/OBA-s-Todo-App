@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#f6f5f1" />
+    <meta name="description" content="A calm home for tasks, notes, and focused work." />
+    <title>Daymark — Plan with clarity</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&amp;family=Manrope:wght@600;700;800&amp;display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <aside class="sidebar" id="sidebar">
+        <div class="brand"><span class="brand__mark">D</span><span>Daymark</span></div>
+        <nav class="nav" aria-label="Workspace">
+          <button class="nav__item is-active" data-view="today"><span>◫</span>Today <b id="today-count">0</b></button>
+          <button class="nav__item" data-view="upcoming"><span>⌁</span>Upcoming</button>
+          <button class="nav__item" data-view="all"><span>✓</span>All tasks</button>
+          <button class="nav__item" data-view="notes"><span>▤</span>Notes</button>
+          <button class="nav__item" data-view="completed"><span>◉</span>Completed</button>
+        </nav>
+        <div class="sidebar__bottom">
+          <div class="mini-progress"><div><span>Weekly progress</span><strong id="side-progress">0%</strong></div><div class="progress"><i id="side-progress-bar"></i></div></div>
+          <button class="theme-toggle" id="theme-toggle" aria-label="Toggle colour theme">☼ <span>Switch theme</span></button>
+          <div class="profile"><span>OA</span><div><strong>OBA</strong><small>Personal workspace</small></div></div>
+        </div>
+      </aside>
+
+      <main class="workspace">
+        <header class="topbar">
+          <button class="menu-button" id="menu-button" aria-label="Open navigation">☰</button>
+          <label class="search"><span>⌕</span><input id="search-input" type="search" placeholder="Search tasks and notes" /></label>
+          <button class="focus-pill" id="focus-shortcut"><span></span> Focus mode</button>
+        </header>
+
+        <section class="content" id="tasks-view">
+          <div class="page-heading">
+            <div><p class="eyebrow" id="date-label"></p><h1 id="view-title">Make today count.</h1><p id="view-subtitle">A clear list for a focused day.</p></div>
+            <button class="primary-button" id="open-task-modal">＋ Add task</button>
+          </div>
+
+          <section class="overview-grid">
+            <article class="stat-card stat-card--dark"><span class="stat-card__label">Today</span><strong id="open-stat">0</strong><p>tasks left to move forward</p><div class="avatars"><i>OA</i><i>＋</i></div></article>
+            <article class="stat-card"><div class="ring" id="progress-ring"><span id="progress-stat">0%</span></div><div><span class="stat-card__label">Momentum</span><strong>On your way</strong><p id="completed-stat">0 tasks completed</p></div></article>
+            <article class="focus-card"><span class="focus-card__icon">◷</span><div><span class="stat-card__label">Deep focus</span><strong id="focus-stat">0 min</strong><p>invested this week</p></div><button id="start-focus">Start</button></article>
+          </section>
+
+          <section class="task-panel">
+            <div class="section-heading"><div><h2 id="list-title">Today’s plan</h2><span id="task-summary">0 tasks</span></div><button class="text-button" id="clear-completed">Clear completed</button></div>
+            <div class="task-list" id="task-list"></div>
+            <div class="empty-state" id="task-empty"><div>✓</div><h3>Your day is wide open</h3><p>Add a task and give your attention somewhere meaningful.</p><button class="secondary-button" id="empty-add">Create a task</button></div>
+          </section>
+        </section>
+
+        <section class="content is-hidden" id="notes-view">
+          <div class="page-heading"><div><p class="eyebrow">YOUR THINKING SPACE</p><h1>Notes worth keeping.</h1><p>Capture an idea before it slips away.</p></div><button class="primary-button" id="open-note-modal">＋ New note</button></div>
+          <div class="notes-grid" id="notes-grid"></div>
+          <div class="empty-state" id="notes-empty"><div>✦</div><h3>A quiet place for ideas</h3><p>Write your first note, thought, or tiny reminder.</p><button class="secondary-button" id="empty-note">Write a note</button></div>
+        </section>
+      </main>
+    </div>
+
+    <dialog class="modal" id="task-modal"><form method="dialog" id="task-form"><div class="modal__header"><div><span class="eyebrow">NEW TASK</span><h2>What needs your attention?</h2></div><button class="icon-button" value="cancel" aria-label="Close">×</button></div><label>Task name<input id="task-title" maxlength="100" required placeholder="e.g. Review the project brief" /></label><div class="form-row"><label>Due date<input id="task-date" type="date" /></label><label>Priority<select id="task-priority"><option value="low">Low</option><option value="medium" selected>Medium</option><option value="high">High</option></select></label></div><div class="modal__actions"><button value="cancel" class="secondary-button">Cancel</button><button value="default" class="primary-button" id="save-task">Add task</button></div></form></dialog>
+
+    <dialog class="modal" id="note-modal"><form method="dialog" id="note-form"><div class="modal__header"><div><span class="eyebrow">NEW NOTE</span><h2>Capture a thought.</h2></div><button class="icon-button" value="cancel" aria-label="Close">×</button></div><label>Title<input id="note-title" maxlength="80" placeholder="Note title" /></label><label>Note<textarea id="note-body" rows="7" maxlength="1000" placeholder="Write freely…"></textarea></label><fieldset><legend>Card colour</legend><div class="color-options"><label><input type="radio" name="note-color" value="sand" checked><span class="sand"></span></label><label><input type="radio" name="note-color" value="lilac"><span class="lilac"></span></label><label><input type="radio" name="note-color" value="mint"><span class="mint"></span></label><label><input type="radio" name="note-color" value="sky"><span class="sky"></span></label></div></fieldset><div class="modal__actions"><button value="cancel" class="secondary-button">Cancel</button><button value="default" class="primary-button" id="save-note">Save note</button></div></form></dialog>
+
+    <dialog class="focus-modal" id="focus-modal"><div class="focus-modal__inner"><button class="icon-button focus-close" id="focus-close" aria-label="Close">×</button><span class="eyebrow">FOCUS SESSION</span><h2>One thing at a time.</h2><div class="timer" id="timer">25:00</div><p>Silence the noise. Your list will be here when you return.</p><div class="timer-options"><button data-minutes="15">15 min</button><button data-minutes="25" class="is-active">25 min</button><button data-minutes="50">50 min</button></div><button class="primary-button timer-button" id="timer-toggle">Start focus</button></div></dialog>
+
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
+    <script type="module" src="src/app.js"></script>
+  </body>
+</html>
